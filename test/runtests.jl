@@ -1,5 +1,9 @@
-using HarrisonSolidStateTable
+push!(LOAD_PATH,"../src/") # load module from local directory
+
+using HarrisonSolidStateTable 
 using Base.Test
 
-# write your own tests here
-@test 1 == 2
+include("SolidStateTable-test.jl")
+
+println("Tests finished succesfully.")
+

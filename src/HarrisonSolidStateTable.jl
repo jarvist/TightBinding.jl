@@ -1,5 +1,10 @@
+# Working towards implementing Harrison's TightBinding methods, as presented in:
+#
+# Walter A. Harrison
+# Electronic structure and the properties of solids
+
 module HarrisonSolidStateTable
 
-# package code goes here
+include("SolidStateTable.jl")
 
-end # module
+end
