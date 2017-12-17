@@ -26,10 +26,29 @@ const ϵpc = -SST[AtoZ[C]].ϵp
 const ϵpa = -SST[AtoZ[A]].ϵp
 
 # Gamma point for now; e^0 = 1
-g0=1.0
-g1=1.0
-g2=1.0
-g3=1.0
+a=d
+
+d1=[ 1  1  1]'*a/4
+d2=[ 1 -1 -1]'*a/4
+d3=[-1  1 -1]'*a/4
+d4=[-1 -1  1]'*a/4
+
+# Point in k-space
+k=[0.0 0.0 0.0]'
+
+# shorthand... I think as used in Wannier's solid state book?
+ixp(f)=exp(im*f)
+
+g0=ixp(k⋅d1) + ixp(k⋅d2) + ixp(k⋅d3) + ixp(k⋅d4)
+g1=ixp(k⋅d1) + ixp(k⋅d2) - ixp(k⋅d3) - ixp(k⋅d4)
+g2=ixp(k⋅d1) - ixp(k⋅d2) + ixp(k⋅d3) - ixp(k⋅d4)
+g3=ixp(k⋅d1) - ixp(k⋅d2) - ixp(k⋅d3) + ixp(k⋅d4)
+
+# Gamma point only...
+#g0=1.0
+#g1=1.0
+#g2=1.0
+#g3=1.0
 
 g0s=conj(g0)
 g1s=conj(g1)
