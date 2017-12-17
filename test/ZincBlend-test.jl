@@ -33,9 +33,8 @@ d2=[ 1 -1 -1]'*a/4
 d3=[-1  1 -1]'*a/4
 d4=[-1 -1  1]'*a/4
 
-# Point in k-space
-k=[0.0 0.0 0.0]'
-
+# This is a terrible function currently; not very hygenic at all
+function bandsfork(k)
 # shorthand... I think as used in Wannier's solid state book?
 ixp(f)=exp(im*f)
 
@@ -66,9 +65,25 @@ Esp*g1s  0        Exx*g0s  Exy*g3s  Exy*g2s  ϵpa     0       0      ;
 Esp*g2s  0        Exy*g3s  Exx*g0s  Exy*g1s  0       ϵpa     0      ;
 Esp*g3s  0        Exy*g2s  Exy*g1s  Exx*g0s  0       0       ϵpa   ]
 
-println("LCAOH matrix for $A-$C")
+println("LCAOH matrix @ k=$k")
 display(LCAOH)
 
 println("Eigendecomposition")
 display(eigvals(LCAOH)) # Do ya thing Liner Algebra!
 
+return eigvals(LCAOH)
+end
+
+# Point in k-space
+k=[0.0 0.0 0.0]'
+
+bands=[]
+
+for r in 0:0.02:1
+    k=[r r 0]' # Gamma -> X?
+    append!(bands,bandsfork(k))
+end
+
+display(bands)
+
+print(bands)
