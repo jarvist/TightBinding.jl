@@ -17,6 +17,14 @@ AtoZ=Dict(j=>i for (i,j) in enumerate(["H","He",
 # Magic comprehension ends up like:
 # ZfromAtom = Dict("H" => 1, "He" => 2, "Li" => 3)
 
+export ηssσ, ηspσ, ηppσ, ηppπ
+# Interatomic matrix elements (eta)
+const ηssσ = -1.40
+const ηspσ = +1.84
+const ηppσ = -1.40
+const ηppπ = -0.81
+
+
 # Vaguely structured to look like the Solid State Table of the Elements
 # Using struct so type immutable; allows for efficient memory use and type stability
 # Current just considering 'simple atoms' form - SP hybridising semiconductors
@@ -24,8 +32,8 @@ struct SolidStateTableEntry
     name::AbstractString
     Z::Int
 
-    Es::Float64
-    Ep::Float64
+    ϵs::Float64
+    ϵp::Float64
 
     kF::Float64
     rc::Float64
@@ -39,7 +47,10 @@ SSTE=SolidStateTableEntry # an alias to shorten the following lines; the full na
 SolidStateTable=Array{SSTE}(92) # only up to 92=U currently!
 SST=SolidStateTable
 
-# OK; here is the actual data
+# OK; here is the actual data - as in Harrison's book
+
+# See also 2004 https://doi.org/10.1103/PhysRevB.70.205101 for 21st century improved d-orbital values
+
 #  "If it's not checked, it's wrong" - Slogan at Bletchley Park
 # These values are not well checked.
 SST[1]=SSTE("H" ,1,   NaN,NaN,      NaN,NaN,NaN,      1.0)

@@ -5,5 +5,7 @@ using Base.Test
 
 include("SolidStateTable-test.jl")
 
+include("ZincBlend-test.jl")
+
 println("Tests finished succesfully.")
 
