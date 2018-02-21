@@ -18,7 +18,7 @@ AtoZ=Dict(j=>i for (i,j) in enumerate(["H","He",
 # ZfromAtom = Dict("H" => 1, "He" => 2, "Li" => 3)
 
 export ηssσ, ηspσ, ηppσ, ηppπ
-# Interatomic matrix elements (eta)
+# Interatomic matrix elements (eta, η)
 const ηssσ = -1.40
 const ηspσ = +1.84
 const ηppσ = -1.40
@@ -44,7 +44,7 @@ end
 
 SSTE=SolidStateTableEntry # an alias to shorten the following lines; the full name appears in the REPL etc.
 
-SolidStateTable=Array{SSTE}(92) # only up to 92=U currently!
+SolidStateTable=Array{SSTE}(92) # only up to Z=92 , uranium currently!
 SST=SolidStateTable
 
 # OK; here is the actual data - as in Harrison's book
@@ -64,12 +64,16 @@ SST[7]=SSTE("N", 7,   23.04,11.47,  NaN,NaN,NaN,      14.01)
 SST[8]=SSTE("O", 8,   29.14,14.13,  0,0.42,1.46,      16.00) 
 # OK, not trying to be comprehensive at this point - let's just get some tetrahedral semiconductors on!
 
+SST[12]=SSTE("Mg",12, 6.86, 2.99,   1.37,0.74,0.65,   24.31)
+
 SST[14]=SSTE("Si",14, 13.55,6.52,   1.81,0.56,0.38,   28.09)
 SST[15]=SSTE("P", 15, 17.10,8.33,   NaN,0.51,NaN,     30.97)
 SST[16]=SSTE("S", 16, 20.80,10.27,  NaN,0.47,1.0,     32.06)
 
-SST[29]=SSTE("Cu",29, 6.92,1.83,    1.36,NaN,NaN,     63.54)
-SST[30]=SSTE("Zn",30, 8.40,3.38,    1.59,0.59,NaN,    65.37)
+SST[22]=SSTE("Ti",22, 11.04, 1.08, 1.17, 1.61,0.90,   47.90) # EEK- FIXME : D-block not correct form.
+
+SST[29]=SSTE("Cu",29, 6.92,1.83,    1.36,NaN,NaN,     63.54) # 'simple' atom form
+SST[30]=SSTE("Zn",30, 8.40,3.38,    1.59,0.59,NaN,    65.37) # FIXME: also D-block; incorrect form
 SST[31]=SSTE("Ga",31, 11.37,4.90,   1.66,0.59,NaN,    69.82)
 SST[32]=SSTE("Ge",32, 14.38,6.36,   1.74,0.54,NaN,    72.59)
 SST[33]=SSTE("As",33, 17.33,7.91,   NaN,0.51, NaN,    74.92)
