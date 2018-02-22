@@ -19,11 +19,19 @@ AtoZ=Dict(j=>i for (i,j) in enumerate(["H","He",
 
 export ηssσ, ηspσ, ηppσ, ηppπ
 # Interatomic matrix elements (eta, η)
+# TODO: Check; and wrap these in a struct
 const ηssσ = -1.40
 const ηspσ = +1.84
-const ηppσ = -1.40
+const ηppσ = +3.24 
 const ηppπ = -0.81
 
+const ηsdσ = -3.16
+const ηpdσ = -2.95
+const ηpdπ = +1.36
+
+const ηddσ = -16.2
+const ηddπ = +8.75
+const ηddδ = +0.0
 
 # Vaguely structured to look like the Solid State Table of the Elements
 # Using struct so type immutable; allows for efficient memory use and type stability
