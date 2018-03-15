@@ -7,15 +7,17 @@ end
 
 # Exponential x power law
 #   Written as a crazy summation expansion for the joy of it.
-# FIXME: Currently only 'works' with one set of An mn pn values.
 macro EPL(r0,An,mn,pn)
-    sum=:()
-    for (A,m,p) in zip(An,mn,pn)
-        sum = :($sum + $A * ($r0/r)^$m * exp(-$p *(r-$r0)) )
+    sum=:(0.0)
+    for (A,m,p) in zip(eval(An),eval(mn),eval(pn))
+        sum=:($sum + $A * ($r0/r)^$m * exp(-$p *(r-$r0)) )
     end
-    println("sum: ",sum)
+    #println("sum: ",sum)
     return :(r -> $sum) 
 end
 
-# TODO: EPL, QUAD
+# Chadi's quadratic
+macro QUAD(r0,A1,A2)
+    return :(r -> $A1*(r-$r0) + $A2*(r-$r0)*(r-$r0) )
+end
 

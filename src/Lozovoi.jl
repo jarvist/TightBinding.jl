@@ -54,5 +54,15 @@ OHnc = 6.3096
 OHr0 = 1.8094
 OHrc = 3.3550
 
-OOPP = @GSP(OHϕ0,OHn,OHnc,OHr0,OHrc)
+OHPP = @GSP(OHϕ0,OHn,OHnc,OHr0,OHrc)
+
+OOr0 = 5.6
+OOϕ1 = 4.0306e-3
+OOϕ2 = -2.0265e-3
+OOm1 = 10
+OOm2 = 6
+OOp1 = 0
+OOp2 = 0
+
+OOPP = @EPL(OOr0,(OOϕ1,OOϕ2),(OOm1,OOm2),(OOp1,OOp2))
 
