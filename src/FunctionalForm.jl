@@ -9,10 +9,10 @@ end
 #   Written as a crazy summation expansion for the joy of it.
 macro EPL(r0,An,mn,pn)
     sum=:(0.0)
-    for (A,m,p) in zip(eval(An),eval(mn),eval(pn))
+    for (A,m,p) in zip(An.args,mn.args,pn.args)
         sum=:($sum + $A * ($r0/r)^$m * exp(-$p *(r-$r0)) )
     end
-    #println("sum: ",sum)
+    println("sum: ",sum)
     return :(r -> $sum) 
 end
 
