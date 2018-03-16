@@ -8,9 +8,10 @@
 #
 # TODO: Fix all the things.
 
-module PITB # PolarisableIonTightBinding ; OK, shorter form easier to play with
+#module PITB # PolarisableIonTightBinding ; OK, shorter form easier to play with
 
 include("FunctionalForm.jl") # explicit form of pair-potentials
 include("Lozovoi.jl") # parameters for 2014 Lozovoi paper; H20, corrected
+include("PolynomialApproximation.jl") # usin ApproxFun to speedup evaluation
 
-end
+#end

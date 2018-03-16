@@ -1,6 +1,6 @@
 push!(LOAD_PATH,"../src/") # load module from local directory
 
-include("PolarisableIonTightBinding.jl")
+include("../src/PolarisableIonTightBinding.jl")
 using Plots
 
 # Plot pair potential; O-H bond integrals
