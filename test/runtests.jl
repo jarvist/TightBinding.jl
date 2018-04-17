@@ -7,5 +7,7 @@ include("SolidStateTable-test.jl")
 
 include("ZincBlend-test.jl")
 
+include("ShiPapaconstantopoulos-test.jl")
+
 println("Tests finished succesfully.")
 

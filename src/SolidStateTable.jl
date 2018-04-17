@@ -1,7 +1,7 @@
 # Julia typed form of the Harrison solid state table
 # Walter A. Harrison - Electronic structure & the property of solids
 
-export SolidStateTableEntry, SSTE, SolidStateTable, SST 
+export SolidStateTableEntry, SSTE, SolidStateTable, SST, ShiSST 
 export HarrisonIME, HarrisonShiAltIME, ShiIME
 
 # Interatomic matrix elements (eta, η)
@@ -56,9 +56,6 @@ end
 
 SSTE=SolidStateTableEntry # an alias to shorten the following lines; the full name appears in the REPL etc.
 
-SolidStateTable=Array{SSTE}(92) # only up to Z=92 , uranium currently!
-SST=SolidStateTable
-
 # Constructor methods
 # SIMPLE ATOMS
 SSTp(name,Z,ϵs,ϵp,kF,rc,ri,mass)=SSTE(name,Z,ϵs,ϵp,NaN, kF,rc,ri, NaN, mass)
@@ -69,9 +66,14 @@ SSTf()=SSTE() # TODO: Implement f-shell in data structure
 
 # Shi-Papaconstantopoulos
 # 2004 https://doi.org/10.1103/PhysRevB.70.205101 ; 21st century improved d-orbital values
-SSTShi(name,Z,ϵs,ϵp,ϵd,γ,rd)=SSTE(name,Z, ϵs,ϵp,ϵd, NaN, rd, γ, mass)
+SSTShi(name,Z,ϵs,ϵp,ϵd,γ,rd,mass)=SSTE(name,Z, ϵs,ϵp,ϵd, NaN, NaN, rd, γ, mass)
 
 # OK; here is the actual data - as in Harrison's book
+SolidStateTable=Array{SSTE}(92) # only up to Z=92 , uranium currently!
+SST=SolidStateTable
+
+ShiSST=Array{SSTE}(92) 
+ShiSST[22]=SSTShi("Ti",22, 0.51252, 0.79759, 0.21879, 0.92307, 1.85267, 47.90) 
 
 #  "If it's not checked, it's wrong" - Slogan at Bletchley Park
 # These values are not well checked.
@@ -92,11 +94,11 @@ SST[14]=SSTp("Si",14, 13.55,6.52,   1.81,0.56,0.38,   28.09)
 SST[15]=SSTp("P", 15, 17.10,8.33,   NaN,0.51,NaN,     30.97)
 SST[16]=SSTp("S", 16, 20.80,10.27,  NaN,0.47,1.0,     32.06)
 
-SST[22]=SSTd("Ti",22, 11.04, 1.08, 1.17, 1.61,0.90,   47.90) # EEK- FIXME : D-block not correct form.
+SST[22]=SSTd("Ti",22, 11.04, 1.08,  1.17, 1.61,0.90,   47.90) # TODO: Check d-block.
 
 # Cu is special - also has d-block params?
 SST[29]=SSTp("Cu",29, 6.92,1.83,    1.36,NaN,NaN,     63.54) # 'simple' atom form
-SST[30]=SSTp("Zn",30, 8.40,3.38,    1.59,0.59,NaN,    65.37) # FIXME: also D-block; incorrect form
+SST[30]=SSTp("Zn",30, 8.40,3.38,    1.59,0.59,NaN,    65.37) 
 SST[31]=SSTp("Ga",31, 11.37,4.90,   1.66,0.59,NaN,    69.82)
 SST[32]=SSTp("Ge",32, 14.38,6.36,   1.74,0.54,NaN,    72.59)
 SST[33]=SSTp("As",33, 17.33,7.91,   NaN,0.51, NaN,    74.92)
