@@ -2,25 +2,37 @@
 # Walter A. Harrison - Electronic structure & the property of solids
 
 export SolidStateTableEntry, SSTE, SolidStateTable, SST 
+export HarrisonIME, HarrisonShiAltIME, ShiIME
 
-export ηssσ, ηspσ, ηppσ, ηppπ
 # Interatomic matrix elements (eta, η)
+# Harrison, 'Solid State Table' parameters, top right table
 # TODO: Check; and wrap these in a struct
+struct InterAtomic
+    ηssσ::Float64
+    ηspσ::Float64
+    ηppσ::Float64
+    ηppπ::Float64
+
+    ηsdσ::Float64
+    ηpdσ::Float64
+    ηpdπ::Float64
+
+    ηddσ::Float64
+    ηddπ::Float64
+    ηddδ::Float64
+end
+
 # Nb: These are from the Dover reprint of Harrison's book (El-strucut & the prop of solids)
-# Shi+Papaconstantopoulos give quite different values for some constants:
+HarrisonIME=InterAtomic(-1.40,+1.84,+3.24,-0.81, -3.16,-2.95,+1.36, -16.2,+8.75,+0.0)
+
+# Shi and Papaconstantopoulos give quite different values for Harrison;
+# s and p are totally different; d mostly the same except for ddδ (last value)
+#   Table I https://doi.org/ 10.1103/PhysRevB.70.205101
+HarrisonShiAltIME=InterAtomic(-1.32,+1.42,+2.22,-0.63, -3.16,-2.95,+1.36, -16.2,+8.75,-2.39)
+
+# Shi and Papconstantopoulos - improved values for d-block 
 #   See Table I https://doi.org/ 10.1103/PhysRevB.70.205101
-const ηssσ = -1.40 
-const ηspσ = +1.84
-const ηppσ = +3.24 
-const ηppπ = -0.81
-
-const ηsdσ = -3.16
-const ηpdσ = -2.95
-const ηpdπ = +1.36
-
-const ηddσ = -16.2
-const ηddπ = +8.75
-const ηddδ = +0.0
+ShiIME=     InterAtomic(-0.90,+1.44,+2.19,-0.03, -3.12,-4.26,+2.08, -21.22,+12.60,-2.29)
 
 # Vaguely structured to look like the Solid State Table of the Elements
 # Using struct so type immutable; allows for efficient memory use and type stability
@@ -34,8 +46,10 @@ struct SolidStateTableEntry
     ϵd::Float64
 
     kF::Float64
-    rc::Float64
+    rc::Float64 # also re-used for r0 (or ro?) of d-block 
     ri::Float64
+
+    γ::Float64
     
     mass::Float64
 end
@@ -47,14 +61,17 @@ SST=SolidStateTable
 
 # Constructor methods
 # SIMPLE ATOMS
-SSTp(name,Z,ϵs,ϵp,kF,rc,ri,mass)=SSTE(name,Z,ϵs,ϵp,NaN, kF,rc,ri,mass)
+SSTp(name,Z,ϵs,ϵp,kF,rc,ri,mass)=SSTE(name,Z,ϵs,ϵp,NaN, kF,rc,ri, NaN, mass)
 # TRANSITION METALS (we call this d for 'd block')
-SSTd(name,Z,ϵd,rd,kd,ro,ri,mass)=SSTE(name,Z,NaN,NaN,ϵd, NaN, NaN, ri,mass) # FIXME: currently fills in blanks for ro,kd
+SSTd(name,Z,ϵd,rd,kd,ro,ri,mass)=SSTE(name,Z,NaN,NaN,ϵd, NaN, ro, ri, NaN, mass) 
 # F-SHELL METALS
-SSTf()=SSTE() # TODO: Finish this
-# OK; here is the actual data - as in Harrison's book
+SSTf()=SSTE() # TODO: Implement f-shell in data structure
 
-# See also 2004 https://doi.org/10.1103/PhysRevB.70.205101 for 21st century improved d-orbital values
+# Shi-Papaconstantopoulos
+# 2004 https://doi.org/10.1103/PhysRevB.70.205101 ; 21st century improved d-orbital values
+SSTShi(name,Z,ϵs,ϵp,ϵd,γ,rd)=SSTE(name,Z, ϵs,ϵp,ϵd, NaN, rd, γ, mass)
+
+# OK; here is the actual data - as in Harrison's book
 
 #  "If it's not checked, it's wrong" - Slogan at Bletchley Park
 # These values are not well checked.

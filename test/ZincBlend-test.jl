@@ -14,11 +14,13 @@ V(eta,d)=eta*hbarsquaredbym/d^2
 d=SST[AtoZ[A]].rc + SST[AtoZ[C]].rc
 println("Distance: $d")
 
+H=HarrisonIME # using traditional Harrison site params
+
 # p 76, left hand side
-Ess=V(ηssσ,d)
-Esp=-V(ηspσ,d)/3^(1/2)
-Exx=1/3*V(ηppσ,d) + 2/3*V(ηppπ,d)
-Exy=1/3*V(ηppσ,d) - 1/3*V(ηppπ,d)
+Ess=V(H.ηssσ,d)
+Esp=-V(H.ηspσ,d)/3^(1/2)
+Exx=1/3*V(H.ηppσ,d) + 2/3*V(H.ηppπ,d)
+Exy=1/3*V(H.ηppσ,d) - 1/3*V(H.ηppπ,d)
 
 const ϵsc = -SST[AtoZ[C]].ϵs
 const ϵsa = -SST[AtoZ[A]].ϵs
