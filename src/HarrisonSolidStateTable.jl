@@ -5,6 +5,7 @@
 
 module HarrisonSolidStateTable
 
+include("PeriodicTable.jl") # basic atom, A->Z data
 include("SolidStateTable.jl")
 
 end
