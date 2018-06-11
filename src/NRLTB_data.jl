@@ -2,23 +2,22 @@
 
 
 function default_orbitals(s)
-   s = string(s)
-   # if s == "Al"  return "spd"
-   # if s == "Si"  return "sp"
-   if s == "C" || s == "Si"
-      return "sp"
+   if s == :C || s == :Si
+      return :sp
    else
-      return "spd"
+      return :spd
    end
-   error("unkown species in `NRLParams`")
+   error("Unknown species $s - I do not know default_orbitals")
 end
 
+"""
+    NRLHamiltonian(s; orbitals=default_orbitals(s), cutoff=:forceshift)
 
-# This function reads the ASCII format data files from the NRL server.
-#
-# The website has been lost, but a functional version remains on the Internet Archive:
-# https://web.archive.org/web/20121003160812/http://cst-www.nrl.navy.mil/bind/
-# 
+This function reads the ASCII format data files from the NRL server.
+
+The website has been lost, but a functional version remains on the Internet Archive:
+https://web.archive.org/web/20121003160812/http://cst-www.nrl.navy.mil/bind/
+"""
 function NRLHamiltonian(s; orbitals=default_orbitals(s), cutoff=:forceshift)
 #   s = string(s)
 #   orbitals = string(orbitals)
@@ -68,7 +67,7 @@ function NRLHamiltonian(s; orbitals=default_orbitals(s), cutoff=:forceshift)
                            [M[67,1],   M[71,1],   M[75,1],   M[79,1],   M[83,1],
                             M[87,1],   M[91,1],   M[95,1],   M[99,1],   M[103,1]],  #t
                            )
-   #   error("unkown species / orbitals combination in `NRLParams`")
+      error("Unknown species $s / orbitals $orbitals combination in `NRLHamiltonian`")
    end
 
    if cutoff == :original
@@ -78,7 +77,7 @@ function NRLHamiltonian(s; orbitals=default_orbitals(s), cutoff=:forceshift)
    elseif cutoff == :forceshift
       H.fcut = cutoff_NRL_Fshift
    else
-      error("unknown cut-off type")
+      error("Unknown cut-off type $cutoff ")
    end
    return H
 end
@@ -263,4 +262,3 @@ Al_spd  =  NRLHamiltonian{9, Function}(9, 10,			        # norbital, nbond
                      [1.06584516722,   0.943623371617,   0.915429215594,   1.17753799190,   0.988337965212,
                       0.873041790591,   0.999293973116,   1.02005972107,   1.01466433826,   1.14341718458],     #t
                     )
-
