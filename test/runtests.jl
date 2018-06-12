@@ -30,4 +30,15 @@ if COMPAREQUIP; include("comparequip.jl"); end
 # include("perfsiteE.jl")
 
 
-# =========== TEMP =======
+# =========== Harrison solid-state table =======
+
+using HarrisonSolidStateTable 
+
+include("SolidStateTable-test.jl")
+
+include("ZincBlend-test.jl")
+
+include("ShiPapaconstantopoulos-test.jl")
+
+println("Harrison Tests finished succesfully.")
+
