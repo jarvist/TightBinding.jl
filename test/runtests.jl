@@ -11,6 +11,14 @@ println("============================================")
 println("    TightBinding Tests  ")
 println("============================================")
 
+# =========== Harrison solid-state table =======
+include("SolidStateTable-test.jl")
+include("ZincBlend-test.jl")
+include("ShiPapaconstantopoulos-test.jl")
+include("PolynomialApproximation.jl")
+
+println("Harrison Tests finished succesfully.")
+
 # =========== Main tests =================
 include("testtoymodel.jl")
 include("testnrltb.jl")
@@ -29,16 +37,4 @@ if COMPAREQUIP; include("comparequip.jl"); end
 # include("benchmarkEandFrc.jl")
 # include("perfsiteE.jl")
 
-
-# =========== Harrison solid-state table =======
-
-using HarrisonSolidStateTable 
-
-include("SolidStateTable-test.jl")
-
-include("ZincBlend-test.jl")
-
-include("ShiPapaconstantopoulos-test.jl")
-
-println("Harrison Tests finished succesfully.")
 

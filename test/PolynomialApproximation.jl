@@ -2,9 +2,8 @@
 
 using ApproxFun
 
-
 # specify range of function. Too short + you end up with millions of polynomial coeffs
-OHVssσFun=Fun(r->OHVssσ(r), 0.4..10)
+OHVssσFun=Fun(r->TightBinding.OHVssσ(r), 0.4..10)
 
 # count number of coeffs
 ncoefficients(OHVssσFun)
@@ -19,7 +18,7 @@ OHVssσFunDeriv=OHVssσFun'
 
 println("Testing ApproxFun...")
 
-orig=OOPP # OOPP is an EPL 
+orig=TightBinding.OOPP # OOPP is an EPL 
 
 for rcut in 0.05:0.1:0.5
     origFun=Fun(r->orig(r), rcut..10)

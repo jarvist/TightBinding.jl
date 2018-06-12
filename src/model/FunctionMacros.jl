@@ -1,4 +1,4 @@
-# FunctionalForm.jl - explicit form of pair-potentials
+# FunctionalMacros.jl - Macros to construct tight-binding pair-potentials of certain functional form
 
 # Goodwin--Skinner--Pettifor
 macro GSP(A,n, nc,r0,rc)

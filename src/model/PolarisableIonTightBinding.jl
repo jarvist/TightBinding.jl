@@ -10,8 +10,8 @@
 
 #module PITB # PolarisableIonTightBinding ; OK, shorter form easier to play with
 
-include("FunctionalForm.jl") # explicit form of pair-potentials
+include("FunctionMacros.jl") # Macros to construct functions 
 include("Lozovoi.jl") # parameters for 2014 Lozovoi paper; H20, corrected
-include("PolynomialApproximation.jl") # usin ApproxFun to speedup evaluation
+#include("PolynomialApproximation.jl") # usin ApproxFun to speedup evaluation
 
 #end

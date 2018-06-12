@@ -28,6 +28,9 @@ include("bzintegration.jl")
 # Construction of contours for PEXSI
 include("FermiContour.jl")
 
+include("PeriodicTable.jl") # basic convenience mapping function
+# obsolete - should move over to cortner's JuLIP form.
+
 # ============= SLATER KOSTER TYPE MODELS ================
 
 # basics for slater-koster type hamiltonians
@@ -44,6 +47,12 @@ include("model/NRLTB.jl")
 
 # The Kwon model - a simple orthogonal TB model for Silicon
 include("model/kwon.jl")
+
+# Harrison solid-state-table
+include("model/SolidStateTable.jl")
+
+# Polarisable ion tight-binding
+include("model/PolarisableIonTightBinding.jl")
 
 # =================== END OF MODELS ======================
 
