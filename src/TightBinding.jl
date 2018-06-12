@@ -31,19 +31,21 @@ include("FermiContour.jl")
 # ============= SLATER KOSTER TYPE MODELS ================
 
 # basics for slater-koster type hamiltonians
-include("sk_core.jl")
+include("model/sk_core.jl")
 
 # assembling hamiltonian and hamiltonian derivatives
-include("matrixassembly.jl")
+include("model/matrixassembly.jl")
 
 # the TB toy model for quick tests (a slater-koster s-orbital model)
-include("toymodel.jl")
+include("model/toymodel.jl")
 
 # the NRLTB model
-include("NRLTB.jl")
+include("model/NRLTB.jl")
 
 # The Kwon model - a simple orthogonal TB model for Silicon
-include("kwon.jl")
+include("model/kwon.jl")
+
+# =================== END OF MODELS ======================
 
 # generic code, such as computing spectral decoposition, energy, forces
 include("calculators.jl")
