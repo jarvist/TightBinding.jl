@@ -7,7 +7,7 @@ function default_orbitals(s)
    else
       return :spd
    end
-   error("Unknown species $s - I do not know default_orbitals")
+   error("Unknown species ($s) - I do not know default_orbitals")
 end
 
 """
@@ -67,7 +67,7 @@ function NRLHamiltonian(s; orbitals=default_orbitals(s), cutoff=:forceshift)
                            [M[67,1],   M[71,1],   M[75,1],   M[79,1],   M[83,1],
                             M[87,1],   M[91,1],   M[95,1],   M[99,1],   M[103,1]],  #t
                            )
-      error("Unknown species $s / orbitals $orbitals combination in `NRLHamiltonian`")
+      #error("Unknown species ($s) + orbitals ($orbitals) combination in `NRLHamiltonian`; attempting to read filename $fname")
    end
 
    if cutoff == :original
