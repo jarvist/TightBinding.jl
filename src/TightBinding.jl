@@ -59,6 +59,10 @@ include("model/PolarisableIonTightBinding.jl")
 # generic code, such as computing spectral decoposition, energy, forces
 include("calculators.jl")
 
+# Convenience functions for calculating + plotting high symmetry paths in the
+# Brillouin zone (i.e. 'band structures')
+include("HighSymmetryPath.jl")
+
 # pole expansion (contour integration) based calculator for TBModel
 include("pexsi.jl")
 
