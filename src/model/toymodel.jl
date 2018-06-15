@@ -10,9 +10,9 @@ export ToyHamiltonian
 using JuLIP.Potentials: PairPotential, Morse, SWCutoff, ZeroSitePotential
 
 """
-`ToyHamiltonian`: constructs a simple s-orbital tight binding hamiltonian.
-The hopping function
-is given by any pair potential, but the default is the morse potential
+`ToyHamiltonian`: constructs a simple s-orbital tight binding Hamiltonian.
+The hopping function is given by any pair potential, but the default is the
+Morse potential
 
   h(r) = e0 ⋅ e^{- α (r/r0 - 1)} ⋅ fcut(r; rcut)
 
@@ -46,8 +46,8 @@ onsite_grad!(::ToyHamiltonian, _1, _2, dH_nn) = fill!(dH_nn, 0.0)
 """
 `ToyTBModel`: constructs a simple 1-orbital SK-type tight binding model,
 with Hamiltonian given by `ToyHamiltonian`. It doesn't model anything but can
-be used for quick tests, e.g. in conjunction
-with the MaterialsScienceTools.TriangularLattice module.
+be used for quick tests, e.g. in conjunction with the
+MaterialsScienceTools.TriangularLattice module.
 
 ### Keyword Parameters
 
@@ -55,7 +55,7 @@ with the MaterialsScienceTools.TriangularLattice module.
 * beta = 1.0 : Fermi temperature
 * fixed_eF = true : if true, then the chemical potential is fixed (default at 0.0)
 * eF = 0.0 : chemical potential (if fixed)
-* hfd = 1e-6 : finite difference step for computing hessians
+* hfd = 1e-6 : finite difference step for computing Hessians
 """
 function ToyTBModel(; beta = 1.0, fixed_eF = true, eF = 0.0,
              hfd = 1e-6, bzquad = GammaPoint(), kwargs...)

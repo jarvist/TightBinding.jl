@@ -19,7 +19,7 @@ const Rydberg_eV = 13.60569301::Float64     # conversion from Ha to eV:  1 eV = 
 #        10 if (s, p ,d) : ssσ, spσ, ppσ, ppπ, sdσ, pdσ, pdπ, ddσ, ddπ, ddδ
 
 """
-`NRLHamiltonian `: specifies the parameters for the NRLTB hamiltonian
+`NRLHamiltonian `: specifies the parameters for the NRLTB Hamiltonian
 """
 mutable struct NRLHamiltonian{NORB, FCUT} <: SKHamiltonian{NONORTHOGONAL, NORB}
     Norbital::Int64
