@@ -29,17 +29,17 @@ println("Harrison Tests finished succesfully.")
 # =========== Main tests =================
 @testset "testtoymodel.jl" begin
 include("testtoymodel.jl") end
-@test "testnrltb.jl" begin
+@testset "testnrltb.jl" begin
 include("testnrltb.jl") end
-@test "testcontour.jl" begin
+@testset "testcontour.jl" begin
 include("testcontour.jl") end
-@test "testsiteE.jl" begin
+@testset "testsiteE.jl" begin
 include("testsiteE.jl") end
-@test "testkwon.jl" begin
+@testset "testkwon.jl" begin
 include("testkwon.jl") end
-@test "testdual.jl" begin
+@testset "testdual.jl" begin
 include("testdual.jl") end
-# @test "test0T.jl" begin
+# @testset "test0T.jl" begin
 # include("test0T.jl") end
 
 # ============= Compare with Atoms.jl and QUIP implementations
