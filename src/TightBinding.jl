@@ -28,25 +28,40 @@ include("bzintegration.jl")
 # Construction of contours for PEXSI
 include("FermiContour.jl")
 
+include("PeriodicTable.jl") # basic convenience mapping function
+# obsolete - should move over to cortner's JuLIP form.
+
 # ============= SLATER KOSTER TYPE MODELS ================
 
 # basics for slater-koster type hamiltonians
-include("sk_core.jl")
+include("model/sk_core.jl")
 
 # assembling hamiltonian and hamiltonian derivatives
-include("matrixassembly.jl")
+include("model/matrixassembly.jl")
 
 # the TB toy model for quick tests (a slater-koster s-orbital model)
-include("toymodel.jl")
+include("model/toymodel.jl")
 
 # the NRLTB model
-include("NRLTB.jl")
+include("model/NRLTB.jl")
 
 # The Kwon model - a simple orthogonal TB model for Silicon
-include("kwon.jl")
+include("model/kwon.jl")
+
+# Harrison solid-state-table
+include("model/SolidStateTable.jl")
+
+# Polarisable ion tight-binding
+include("model/PolarisableIonTightBinding.jl")
+
+# =================== END OF MODELS ======================
 
 # generic code, such as computing spectral decoposition, energy, forces
 include("calculators.jl")
+
+# Convenience functions for calculating + plotting high symmetry paths in the
+# Brillouin zone (i.e. 'band structures')
+include("HighSymmetryPath.jl")
 
 # pole expansion (contour integration) based calculator for TBModel
 include("pexsi.jl")

@@ -59,7 +59,7 @@ end
 println("Test sparse hamiltonian assembly")
 for N = 2:6
    at = (N,N,N) * bulk(:Si, pbc=false, cubic=true)
-   tbm = TightBinding.NRLTB.NRLTBModel(:Si, FermiDiracSmearing(1.0))
+   tbm = TightBinding.NRLTB.NRLTBModel(:Si, TB.FermiDiracSmearing(1.0))
    H, M = hamiltonian(tbm, at)
    Hf, Mf =  TightBinding.evaluate(tbm.H, at, zeros(3), T = full)
    @show typeof(H)

@@ -58,7 +58,7 @@ sk_d!{IO}(H::SKHamiltonian{IO, 9}, r, R, b, db, dout) = _sk9_d!(R/r, r, b, db, d
 
 
 # ======================================================================
-# prototypes for the functions needed to assemble the hamiltonian
+# prototypes for the functions needed to assemble the Hamiltonian
 # and its derivatives
 
 # TODO: documentation, what is this called?
@@ -126,7 +126,7 @@ const SKBlock{NORB} = SMatrix{NORB, NORB, Float64}
 
 """
 a triplet sparse matrix kind of thing that stores pre-computed
-hamiltonian blocks, and can efficiently generate k-dependent Hamiltonians,
+Hamiltonian blocks, and can efficiently generate k-dependent Hamiltonians,
 either sparse of full.
 
 ### Methods:
@@ -139,13 +139,13 @@ either sparse of full.
                            systems) based on some simple heuristic
 
 ### Fields:
-* `H` : the hamiltonian used to construct it
+* `H` : the Hamiltonian used to construct it
 * `at` : the associated atoms object
 * `i, j` : row and column indices
 * `first` : `first[n]` is the index in `i, j` for which `i[idx] == n`
 * `vH` : Hamiltonian blocks
 * `vM` : overlap blocks
-* `Rcell` : each hamiltonian block is associated with an e^{i k ⋅ S} multiplier
+* `Rcell` : each Hamiltonian block is associated with an e^{i k ⋅ S} multiplier
             from the Bloch transform; this S is stored in Rcell.
 """
 immutable SparseSKH{HT, TV}  # v0.6: require that TV <: SKBlock{NORB}
@@ -188,7 +188,7 @@ function SparseSKH{ISORTH, NORB}(H::SKHamiltonian{ISORTH, NORB}, at::AbstractAto
    # index into the triplet format
    idx = 0
 
-   # allocate space to assemble the hamiltonian blocks, we use MMatrix
+   # allocate space to assemble the Hamiltonian blocks, we use MMatrix
    # here, but is this really necessary? Matrix should do fine?
    H_nm = zero(MMatrix{NORB, NORB, Float64})
    M_nm = zero(MMatrix{NORB, NORB, Float64})
@@ -214,7 +214,7 @@ function SparseSKH{ISORTH, NORB}(H::SKHamiltonian{ISORTH, NORB}, at::AbstractAto
       # loop through the neighbours of the current atom (i.e. the bonds)
       for m = 1:length(neigs)
          U = R[m]/r[m]
-         # hamiltonian block
+         # Hamiltonian block
          sk!(H, U, hop!(H, r[m], bonds), H_nm)
          idx += 1
          i[idx], j[idx], vH[idx] = n, neigs[m], SKB(H_nm)
@@ -370,7 +370,7 @@ evaluate(H::SKHamiltonian, at::AbstractAtoms, k::AbstractVector; T=best) =
 # ================== Intermediate Storage for dHij/dRa elements
 
 """
-a sparse-matrix kind of thing that stores pre-computed hamiltonian
+a sparse-matrix kind of thing that stores pre-computed Hamiltonian
 derivative blocks
 """
 mutable struct SparseSKHgrad{HT, TV}

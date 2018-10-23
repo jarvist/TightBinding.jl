@@ -5,8 +5,8 @@
 
 
 """
-Assemble a hamiltonian block for a Slater-Koster type
-hamiltonian, with 4 orbitals (s, p).
+Assemble a Hamiltonian block for a Slater-Koster type
+Hamiltonian, with 4 orbitals (s, p).
 
 ### Parameters:
 * `U` : R / |R|, orientation of the bond, must be a 3-vector
@@ -38,8 +38,8 @@ end
 
 
 """
-Assemble a hamiltonian block for a slater-koster type
-hamiltonian, with 9 orbitals (s, p, d).
+Assemble a Hamiltonian block for a slater-koster type
+Hamiltonian, with 9 orbitals (s, p, d).
 
 * `U` : orientation of the bond
 * `hop` : hopping functions for bond type, 10-vector
