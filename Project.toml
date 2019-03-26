@@ -1,0 +1,8 @@
+name = "TightBinding"
+uuid = "a9a7aa2c-500b-11e9-2798-bff31b2543ba"
+authors = ["Jarvist Moore Frost <jarvist@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+JuLIP = "945c410c-986d-556a-acb1-167a618e0462"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
